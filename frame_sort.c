@@ -5,7 +5,7 @@
 
 int main()
 {
-	int fsz,i,j,k=0,z=0;
+	int fsz,i,j,k=0,z=0,p,q,tmp,ln,h;
 	struct frame {
 		int id;
 		char st[20];
@@ -21,7 +21,11 @@ int main()
 	printf("it is %s",s);
 	printf("Enter frame size:");
 	scanf("%d",&fsz);
-	struct frame fr[fsz];
+	ln = strlen(s)/fsz;
+	h = strlen(s)%fsz;
+	if(h!=0)
+		ln +=1;
+	struct frame fr[ln];
 	if(fsz>strlen(s))
 		printf("Invalid frame size\n");
 	else
@@ -30,7 +34,8 @@ int main()
 		for(i=0; i<strlen(s) && s[i]!='\n'; i++){
 			printf("%c\n", s[i]);
 		}
-		for(j=0;j<=fsz;j++){
+		printf("Before sorting\n");
+		for(j=0;j<ln;j++){
 			fr[j].id = j;
 			printf("here %d\n",fr[j].id);
 			k += fsz;
@@ -39,6 +44,29 @@ int main()
 			}
 			printf("string is %s\n",fr[j].st);
 		}
+		printf("After shuffling\n");
+		for(i = 0;i<ln;i++){
+			p = rand()%(ln);
+			q = rand()%(ln);
+			tmp = fr[p].id;
+			fr[p].id = fr[q].id;
+			fr[q].id = tmp;
+		}
+		for(i=0; i<ln; i++)
+			printf("%d \t %s\n",fr[i].id,fr[i].st);
+		//sorting
+		for(i=0; i<ln;i++){
+			for(j=0; j<ln-i-1;j++){
+				if(fr[j].id>fr[j+1].id){
+					tmp = fr[j].id;
+					fr[j].id = fr[j+1].id;
+					fr[j+1].id = tmp;
+				}
+			}
+		}
+		printf("After sorting \n");
+		for(i=0; i<ln; i++)
+			printf("%d \t %s\n",fr[i].id,fr[i].st);
 
 	}
 	free(s);
