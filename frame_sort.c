@@ -18,7 +18,7 @@ int main()
 	}	
 	printf("Enter a String\n");
 	fgets(s,maxsz,stdin);
-	printf("it is %s",s);
+	printf("The entered string is %s",s);
 	printf("Enter frame size:");
 	scanf("%d",&fsz);
 	ln = strlen(s)/fsz;
@@ -31,18 +31,19 @@ int main()
 	else
 	{
 		printf("let's continue\n");
-		for(i=0; i<strlen(s) && s[i]!='\n'; i++){
+		/*for(i=0; i<strlen(s) && s[i]!='\n'; i++){
 			printf("%c\n", s[i]);
-		}
+		}*/
 		printf("Before sorting\n");
+		printf("Frame no.\tData\n");
 		for(j=0;j<ln;j++){
 			fr[j].id = j;
-			printf("here %d\n",fr[j].id);
+			//printf("here %d\n",fr[j].id);
 			k += fsz;
 			for(i=0; i<fsz &&s[z]!='\n'&& z<k;i++, z++){
 				fr[j].st[i] = s[z];
 			}
-			printf("string is %s\n",fr[j].st);
+			printf("%d\t\t%s\n",fr[j].id,fr[j].st);
 		}
 		printf("After shuffling\n");
 		for(i = 0;i<ln;i++){
