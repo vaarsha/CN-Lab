@@ -5,7 +5,7 @@
 
 int main()
 {
-	int fsz,i,j,k=0,z=0,p,q,tmp,ln,h;
+	int fsz,i,j,k=0,z=0,p,q,tmp,ln,h,cm;
 	struct frame {
 		int id;
 		char st[20];
@@ -21,12 +21,15 @@ int main()
 	printf("The entered string is %s",s);
 	printf("Enter frame size:");
 	scanf("%d",&fsz);
-	ln = strlen(s)/fsz;
-	h = strlen(s)%fsz;
+	cm = strlen(s)-1;
+	ln = (cm)/fsz;
+	h = (cm)%fsz;
+	//printf("String length is = %d and h value is %d= ",strlen(s)-1,h);
 	if(h!=0)
 		ln +=1;
+
 	struct frame fr[ln];
-	if(fsz>strlen(s))
+	if(fsz>=cm || fsz<=0)
 		printf("Invalid frame size\n");
 	else
 	{
