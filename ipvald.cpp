@@ -9,22 +9,16 @@ int num[4];
 int anum[4],j=0,z=0,cnt=0,k;
 cout<<"Enter ip address"<<endl;
 cin>>s;
-
+cout<<"The entered ip is "<<s<<endl;
 if (strlen(s)> 6 && strlen(s)<16){
     //printf("The number is %d",a-'0');
     while(j<strlen(s)+1){
             k=j;
-            cout<<j<<endl;
           while(!(s[k]== '.' || s[k]== '\0') && k<strlen(s)){
-             cout<<k<<"this is"<<endl;
-	     cout<<"Value in s[k] is"<<s[k]<<endl;
              num[cnt] = s[k]-'0';
-	     cout<<"The number stored is"<<num[cnt]<<endl;
-             cnt++;
+	     cnt++;
              k++;
             }
-           for(int g =0;g<cnt;g++)
-           cout<<num[g]<<endl;
             if(cnt == 1){
                anum[z]=num[0];
                j+= 1;
@@ -35,24 +29,37 @@ if (strlen(s)> 6 && strlen(s)<16){
                 j+=2;
                 z++;
             }
-            else{
-               anum[z]=num[0]*100+num[1]*10+num[0];
-               j+=3;
-             z++;
+            else if(cnt==3){
+		anum[z]=num[0]*100+num[1]*10+num[2];
+                j+=3;
+                z++;
             }
+	    else{
+		    j++;
+	    }
 
            cnt = 0;
      }
-    int z=0;
+    int z=0,j=1;
     while(z<4){
-      if(anum[z]>=255 && anum[z]>=0)
-       continue;
+      if(anum[z]<=255 && anum[z]>=0){
+	      j=0;
+      }
       else{
         cout<<"Error";
         break;
       }
      z++;
    }
+    if(j==0){
+	cout<<"You have entered valid ip address which is "<<endl;
+	for(int i=0;i<4;i++){
+		if(i==3)
+			cout<<anum[i]<<endl;
+		else
+			cout<<anum[i]<<".";
+	}
+    }
 }
 else
    cout<<"Invalid address"<<endl;
