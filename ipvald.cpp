@@ -6,12 +6,18 @@ using namespace std;
 int main(){
 char s[17];
 int num[4];
-int anum[4],j=0,z=0,cnt=0,k;
+int anum[4],j=0,z=1,cnt=0,k;
 cout<<"Enter ip address"<<endl;
 cin>>s;
 cout<<"The entered ip is "<<s<<endl;
-if (strlen(s)> 6 && strlen(s)<16){
+for(int i = 0; i<strlen(s); i++){
+	if(s[i] == '.')
+		z +=1;
+}
+
+if (strlen(s)> 6 && strlen(s)<16 && s[0]!='.' && z == 4){
     //printf("The number is %d",a-'0');
+    z=0;
     while(j<strlen(s)+1){
             k=j;
           while(!(s[k]== '.' || s[k]== '\0') && k<strlen(s)){
@@ -40,14 +46,12 @@ if (strlen(s)> 6 && strlen(s)<16){
 
            cnt = 0;
      }
-    int z=0,j=1;
+    int z=0,j=0;
     while(z<4){
-      if(anum[z]<=255 && anum[z]>=0){
-	      j=0;
-      }
-      else{
-        cout<<"Error";
-        break;
+      if(!(anum[z]<=255 && anum[z]>=0)){
+	      cout<<"Error"<<endl;
+		      j=1;
+		      break;
       }
      z++;
    }
