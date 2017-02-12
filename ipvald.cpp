@@ -9,15 +9,17 @@ int num[4];
 int anum[4],j=0,z=0,cnt=0,k;
 cout<<"Enter ip address"<<endl;
 cin>>s;
-cout<<"hello"<<endl;
+
 if (strlen(s)> 6 && strlen(s)<16){
     //printf("The number is %d",a-'0');
     while(j<strlen(s)+1){
             k=j;
             cout<<j<<endl;
-            while(s[k]!='.' || s[k]!= '\0' && k<strlen(s)){
+          while(!(s[k]== '.' || s[k]== '\0') && k<strlen(s)){
              cout<<k<<"this is"<<endl;
+	     cout<<"Value in s[k] is"<<s[k]<<endl;
              num[cnt] = s[k]-'0';
+	     cout<<"The number stored is"<<num[cnt]<<endl;
              cnt++;
              k++;
             }
