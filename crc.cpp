@@ -2,38 +2,14 @@
 #include<string>
 #include<stdlib.h>
 using namespace std;
-int main()
-{
-	int dl,div,tn=1,cnt=0;
-	string val,dv,nwval;
-	cout<<"Enter binary data"<<endl;
-	cin>>val;
-	cout<<"Entered value is "<<val<<endl;
-	cout<<"The enter divisor value is "<<endl;
-	cin>>dv;
-
-	dl = dv.length(); //divisor length.
-	int* pvalue  = new int[dl];
-	for(int i=0; i<dl; i++)
-		pvalue[i]=dv[i]-'0';  //divisor value from string stored in integer array.
-
-	int vlen = val.length();
-	cout<<"String length "<<vlen<<endl;
-	int* data = new int[vlen+dl-1];
-	for(int i = 0; i<vlen; i++)
-		data[i] = val[i]-'0'; //binary data stored in integer array.
-	for(int i = vlen; i<vlen+dl-1; i++)
-		data[i] = 0; // appended divisor length -1  zeroes to integer array.
-	for(int i=0; i<vlen+dl-1; i++)
-		cout<<data[i]; //Output the final data value
-	cout<<endl;
-	//Xor
-	int* nwdata = new int[vlen+dl];
+void functxor(int dl,int vlen,int data[],int pvalue[]){
+	int* nwdata = new int[vlen];
+	int cnt;
 	for(int i = 0; i<dl; i++)
 		nwdata[i] = data[i]; //Input values from data array to new data array depending on divisor length.
 	int i = dl;
 	int z=0;
-	while(i<vlen+dl-1){
+	while(i<vlen-1){
 		if(nwdata[0] == 1){
 			//First digit is 1.
 			for(int j = 0; j<dl; j++){
@@ -73,7 +49,37 @@ int main()
 	for(int i = 1;i<dl;i++)
 		cout<<nwdata[i];
 	cout<<endl;
+	delete[] nwdata;
+	nwdata = 0;
+}
+int main()
+{
+	int dl,div,tn=1,cnt=0;
+	string val,dv,nwval;
+	cout<<"Enter binary data"<<endl;
+	cin>>val;
+	cout<<"Entered value is "<<val<<endl;
+	cout<<"The enter divisor value is "<<endl;
+	cin>>dv;
 
+	dl = dv.length(); //divisor length.
+	int* pvalue  = new int[dl];
+	for(int i=0; i<dl; i++)
+		pvalue[i]=dv[i]-'0';  //divisor value from string stored in integer array.
+
+	int vlen = val.length();
+	cout<<"String length "<<vlen<<endl;
+	int* data = new int[vlen+dl-1];
+	for(int i = 0; i<vlen; i++)
+		data[i] = val[i]-'0'; //binary data stored in integer array.
+	for(int i = vlen; i<vlen+dl-1; i++)
+		data[i] = 0; // appended divisor length -1  zeroes to integer array.
+	for(int i=0; i<vlen+dl-1; i++)
+		cout<<data[i]; //Output the final data value
+	cout<<endl;
+	vlen = vlen+dl;
+	functxor(dl,vlen,data,pvalue);
+	//Receiver
 	cout<<"Enter receiver data"<<endl;
 	cin>>nwval;
 	cout<<"Entered received binary data is "<<nwval<<endl;
@@ -82,6 +88,8 @@ int main()
 		data[i] = nwval[i] - '0';
 		cout<<data[i]<<endl;
 	}
+	functxor(dl,nwl,data,pvalue);
+	/*
 	for(int i = 0; i<dl; i++)
 		nwdata[i] = data[i]; //Input values from data array to new data array depending on divisor length.
 	i = dl;
@@ -110,8 +118,6 @@ int main()
 			cnt = j;
 		}
 		nwdata[cnt+1] = data[i];
-		/*for(int k =0;k<dl;k++)
-			cout<<"The new vaue of nwdata is ->"<<nwdata[k]<<endl;*/
 		i++;
 	}
 	if(nwdata[0] == 1){
@@ -135,7 +141,7 @@ int main()
 		cout<<"Received data corrupted"<<endl;
 
 	delete[] nwdata;
-	nwdata = 0;
+	nwdata = 0;*/
 	delete[] data;
 	data = 0;
 	delete[] pvalue;
