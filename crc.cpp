@@ -24,37 +24,55 @@ int main()
 		data[i] = val[i]-'0'; //binary data stored in integer array.
 	for(int i = vlen; i<vlen+dl-1; i++)
 		data[i] = 0; // appended divisor length -1  zeroes to integer array.
-	for(int i=0; i<vlen+dl-1; i++){
-		cout<<data[i];
-		cout<<"The value in data is "<<data[i]<<" and i value is "<<i<<endl;
-		cnt += 1;
-	}
-	cout<<"count is "<<cnt<<endl;
+	for(int i=0; i<vlen+dl-1; i++)
+		cout<<data[i]; //Output the final data value
+	cout<<endl;
 	//Xor
 	int* nwdata = new int[vlen+dl];
-	for(int i = 0; i<dl; i++){
-		nwdata[i] = data[i];
-		cout<<"data in nw to be "<<nwdata[i]<<endl;
-	}
+	for(int i = 0; i<dl; i++)
+		nwdata[i] = data[i]; //Input values from data array to new data array depending on divisor length.
 	int i = dl;
 	int z=0;
 	while(i<vlen+dl-1){
 		if(nwdata[0] == 1){
-			cout<<" first digit is 1"<<endl;
-			for(int j = 0; j<dl; j++)
+			//First digit is 1.
+			for(int j = 0; j<dl; j++){
+				//cout<<"before value of nwdata "<<nwdata[j]<<" value of div "<<pvalue[j]<<endl;
 				nwdata[j] = nwdata[j] ^ pvalue[j];
+				//cout<<"New value of data "<<nwdata[j]<<endl; 
+			}	
 		}
 		else{
-			for(int j = 0; j<dl;j++)
+			//First digit is 0.
+			for(int j = 0; j<dl;j++){
+				//cout<<"old value of nwdata "<<nwdata[j]<<endl;
 				nwdata[j] = nwdata[j]^0;
+				//cout<<" new value of nwdata is "<<nwdata[j]<<endl;
+			}
 		}
-		for(int j = 0; j<dl-1; j++)
+
+		for(int j = 0; j<dl-1; j++){
+			//cout<<"old value of nwdata "<<nwdata[j]<<" and j value is "<<j<<" and nwdata j+1 value is "<<nwdata[j+1]<<endl;
 			nwdata[j] = nwdata[j+1];
-		nwdata[dl] = data[i];
+			cnt = j;
+		}
+		nwdata[cnt+1] = data[i];
+		/*for(int k =0;k<dl;k++)
+			cout<<"The new vaue of nwdata is ->"<<nwdata[k]<<endl;*/
 		i++;
 	}
-	for(int i = 0;i<dl;i++)
-		cout<<nwdata[i]<<endl;
+	if(nwdata[0] == 1){
+		for(int i =0; i<dl; i++)
+			nwdata[i] = nwdata[i]^pvalue[i];
+	}
+	else{
+		for(int i = 0; i<dl; i++)
+			nwdata[i] = nwdata[i]^0;
+	}
+	cout<<"The remainder is ";
+	for(int i = 1;i<dl;i++)
+		cout<<nwdata[i];
+	cout<<endl;
 	delete[] nwdata;
 	nwdata = 0;
 	delete[] data;
