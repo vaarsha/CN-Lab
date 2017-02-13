@@ -18,11 +18,8 @@ int rm,dm=0,i=0;
 while(nm!=0){
 rm = nm%10;
 nm /=10;
-for(int j = 0;j<9;j
-decm += rm*((int)pow(2,i));
-++i;
-
-decm += rm*((int)pow(2,i));
+//for(int j = 0;j<9;j
+dm += rm*((int)pow(2,i));
 ++i;
 }
 return dm;
