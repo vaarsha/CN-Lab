@@ -64,6 +64,8 @@ void functxor(int dl,int vlen,int data[],int pvalue[],int rs){
 		cout<<endl;
 		if(res == 0)
 			cout<<"Received data corrupted"<<endl;
+		else
+			cout<<"Received data is not corrupted"<<endl;
 	}
 	delete[] nwdata;
 	nwdata = 0;
@@ -90,6 +92,7 @@ int main()
 		data[i] = val[i]-'0'; //binary data stored in integer array.
 	for(int i = vlen; i<vlen+dl-1; i++)
 		data[i] = 0; // appended divisor length -1  zeroes to integer array.
+	cout<<"Final dividend value"<<endl;
 	for(int i=0; i<vlen+dl-1; i++)
 		cout<<data[i]; //Output the final data value
 	cout<<endl;
@@ -102,7 +105,6 @@ int main()
 	int nwl = nwval.length();
 	for(int i = 0; i<nwl; i++){
 		data[i] = nwval[i] - '0';
-		cout<<data[i]<<endl;
 	}
 	functxor(dl,nwl,data,pvalue,1);
 
