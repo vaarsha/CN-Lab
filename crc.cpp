@@ -2,14 +2,16 @@
 #include<string>
 #include<stdlib.h>
 using namespace std;
-void functxor(int dl,int vlen,int data[],int pvalue[]){
+void functxor(int dl,int vlen,int data[],int pvalue[],int rs){
 	int* nwdata = new int[vlen];
 	int cnt;
 	for(int i = 0; i<dl; i++)
 		nwdata[i] = data[i]; //Input values from data array to new data array depending on divisor length.
 	int i = dl;
 	int z=0;
-	while(i<vlen-1){
+	if(rs == 0)
+		vlen -= 1;
+	while(i<vlen){
 		if(nwdata[0] == 1){
 			//First digit is 1.
 			for(int j = 0; j<dl; j++){
@@ -46,9 +48,23 @@ void functxor(int dl,int vlen,int data[],int pvalue[]){
 			nwdata[i] = nwdata[i]^0;
 	}
 	cout<<"The remainder is ";
-	for(int i = 1;i<dl;i++)
-		cout<<nwdata[i];
-	cout<<endl;
+	if(rs == 0){
+		for(int i = 1;i<dl;i++)
+			cout<<nwdata[i];
+		cout<<endl;
+	}
+	else{
+		int res = 1;
+		for(int i = 1;i<dl;i++){
+			if(nwdata[i] == 1){
+				res = 0;
+			}
+			cout<<nwdata[i];
+		}
+		cout<<endl;
+		if(res == 0)
+			cout<<"Received data corrupted"<<endl;
+	}
 	delete[] nwdata;
 	nwdata = 0;
 }
@@ -78,7 +94,7 @@ int main()
 		cout<<data[i]; //Output the final data value
 	cout<<endl;
 	vlen = vlen+dl;
-	functxor(dl,vlen,data,pvalue);
+	functxor(dl,vlen,data,pvalue,0);
 	//Receiver
 	cout<<"Enter receiver data"<<endl;
 	cin>>nwval;
@@ -88,60 +104,8 @@ int main()
 		data[i] = nwval[i] - '0';
 		cout<<data[i]<<endl;
 	}
-	functxor(dl,nwl,data,pvalue);
-	/*
-	for(int i = 0; i<dl; i++)
-		nwdata[i] = data[i]; //Input values from data array to new data array depending on divisor length.
-	i = dl;
-       	z=0;
-	while(i<nwl){
-		if(nwdata[0] == 1){
-			//First digit is 1.
-			for(int j = 0; j<dl; j++){
-				//cout<<"before value of nwdata "<<nwdata[j]<<" value of div "<<pvalue[j]<<endl;
-				nwdata[j] = nwdata[j] ^ pvalue[j];
-				//cout<<"New value of data "<<nwdata[j]<<endl; 
-			}	
-		}
-		else{
-			//First digit is 0.
-			for(int j = 0; j<dl;j++){
-				//cout<<"old value of nwdata "<<nwdata[j]<<endl;
-				nwdata[j] = nwdata[j]^0;
-				//cout<<" new value of nwdata is "<<nwdata[j]<<endl;
-			}
-		}
+	functxor(dl,nwl,data,pvalue,1);
 
-		for(int j = 0; j<dl-1; j++){
-			//cout<<"old value of nwdata "<<nwdata[j]<<" and j value is "<<j<<" and nwdata j+1 value is "<<nwdata[j+1]<<endl;
-			nwdata[j] = nwdata[j+1];
-			cnt = j;
-		}
-		nwdata[cnt+1] = data[i];
-		i++;
-	}
-	if(nwdata[0] == 1){
-		for(int i =0; i<dl; i++)
-			nwdata[i] = nwdata[i]^pvalue[i];
-	}
-	else{
-		for(int i = 0; i<dl; i++)
-			nwdata[i] = nwdata[i]^0;
-	}
-	cout<<"The remainder is ";
-	int res = 1;
-	for(int i = 1;i<dl;i++){
-		if(nwdata[i] == 1){
-			res = 0;
-		}
-		cout<<nwdata[i];
-	}
-	cout<<endl;
-	if(res == 0)
-		cout<<"Received data corrupted"<<endl;
-
-	delete[] nwdata;
-	nwdata = 0;*/
 	delete[] data;
 	data = 0;
 	delete[] pvalue;
