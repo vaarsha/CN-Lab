@@ -77,7 +77,7 @@ int main()
 	cout<<"Enter binary data"<<endl;
 	cin>>val;
 	cout<<"Entered value is "<<val<<endl;
-	cout<<"The enter divisor value is "<<endl;
+	cout<<"Enter the divisor value "<<endl;
 	cin>>dv;
 
 	dl = dv.length(); //divisor length.
