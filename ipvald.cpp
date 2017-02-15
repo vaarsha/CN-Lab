@@ -68,6 +68,19 @@ if (strlen(s)> 6 && strlen(s)<16 && s[0]!='.' && z == 4){
 		else
 			cout<<anum[i]<<".";
 	}
+	cout<<"Now let's find the class to which it belongs"<<endl;
+	if(0 <= anum[0] && anum[0]<128)
+		cout<<"It's class A"<<endl;
+	else if(127<anum[0] && anum[0]<192)
+		cout<<"It's class B"<<endl;
+	else if(191<anum[0] && anum[0]<224)
+		cout<<"It's class C"<<endl;
+	else if(223<anum[0] && anum[0]<240)
+		cout<<"It's class D"<<endl;
+	else if(239<anum[0] && anum[0]<256)
+		cout<<"It's class E"<<endl;
+	else
+		cout<<"Out of range"<<endl;
     }
 }
 else
