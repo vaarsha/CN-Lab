@@ -75,7 +75,7 @@ int main()
   outpt(narr,n);
   for(int i = 0;i<n;i++){
       if(narr[i]==7)
-         narr[i]= fndp(narr,n,i);
+         narr[i]= (fndp(narr,n,i))%2;
    }
   outpt(narr,n);
   delete[] narr;
