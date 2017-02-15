@@ -32,13 +32,20 @@ else{
 }
 }
 int fndp(int rs[],int n,int skip){
-    int r=0,sk=skip+1;
-    for(int i = skip+1; i<n; i +=sk){
-        if(rs[i]==7){
-           i+=1;
-        }
-        r += rs[i];
-   }
+    int r=0,sk=skip-1,k=0;
+    int i =sk;
+    //cout<<"The skip value is "<<skip<<endl;
+    while(i<n){
+	    //cout<<" i value is -->> "<<i<<endl;
+	    for(int j = 0; j<skip && i<n; j++){
+		    if(rs[i]!=7){ 
+			    r += rs[i];
+		    }
+		    i++;
+		    k++;
+	    }
+	    i = sk +  2*k;
+    }
     return r;
 }
 int main()
@@ -74,8 +81,11 @@ int main()
   }
   outpt(narr,n);
   for(int i = 0;i<n;i++){
-      if(narr[i]==7)
-         narr[i]= (fndp(narr,n,i))%2;
+      if(narr[i]==7){
+	     // cout<<"The sending i value is "<<i<<endl;
+	      narr[i]= (fndp(narr,n,i+1))%2;
+	     // cout<<"The new value of narr is "<<narr[i]<<endl;
+      }
    }
   outpt(narr,n);
   delete[] narr;
