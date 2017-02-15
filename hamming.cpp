@@ -10,7 +10,7 @@ void outpt(int res[],int val){
 int fmin(int vl){
   int res = 0, i =1;
   while(true){
-   if(i>(vl+1+res)){
+   if(i>=(vl+1+res)){
      break;
    }
    i *= 2;
