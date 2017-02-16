@@ -80,7 +80,6 @@ int main()
              k++;
           }
   }
-  outpt(narr,n);
   for(int i = 0;i<n;i++){
       if(narr[i]==7){
 	     // cout<<"The sending i value is "<<i<<endl;
