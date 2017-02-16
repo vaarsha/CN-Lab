@@ -20,7 +20,7 @@ int fmin(int vl){
   return res;
 }
 int power(int n){
-int i =1;
+int i = 1;
 if(n == 0)
  return i;
 else{
@@ -50,7 +50,7 @@ int fndp(int rs[],int n,int skip){
 }
 int main()
 {
-  int m,r,n,j,k,pw,rsz;
+  int m,r,n,j,k,pw,rsz,res,e;
   string rdata;
   cout<<"Enter the number of bits for the message"<<endl;
   cin>>m;
@@ -97,9 +97,35 @@ int main()
 	  cout<<"Invalid data"<<endl;
   else{
 	  int*rarr = new int[rsz];
+	  int*err = new int[r];
 	  for(int i = 0; i<rsz;i++)
 		  rarr[i] = rdata[i]-'0';
 	  outpt(rarr,rsz);
+	  j = 0, res=0, e=0;
+	  while(j<r){
+		  pw=power(j);
+		  err[j] = (fndp(rarr,rsz,pw))%2;
+		  if(err[j] == 1){
+			  res += pw;
+			  e = 1;
+		  }
+		  j++;
+	  }
+	  if(e==0)
+		  cout<<"No error"<<endl;
+	  else{
+		  res -= 1;
+		  cout<<"The error is at "<<res<<endl;
+		  cout<<"Now let's correct the error"<<endl;
+		  if(rarr[res] == 0)
+			  rarr[res] = 1;
+		  else
+			  rarr[res] = 0;
+		  cout<<"Correct data "<<endl;
+		  outpt(rarr,rsz);
+	  }
+	  delete[] err;
+	  err = 0;
 	  delete[] rarr;
 	  rarr = 0;
   }
