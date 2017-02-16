@@ -50,7 +50,8 @@ int fndp(int rs[],int n,int skip){
 }
 int main()
 {
-  int m,r,n,j,k,pw;
+  int m,r,n,j,k,pw,rsz;
+  string rdata;
   cout<<"Enter the number of bits for the message"<<endl;
   cin>>m;
   int*arr = new int[m];
@@ -88,6 +89,20 @@ int main()
       }
    }
   outpt(narr,n);
+  cout<<"Enter the received data"<<endl;
+  cin>>rdata;
+  rsz=rdata.length();
+  cout<<"The length of received data is "<<rsz<<endl;
+  if(rsz!=n)
+	  cout<<"Invalid data"<<endl;
+  else{
+	  int*rarr = new int[rsz];
+	  for(int i = 0; i<rsz;i++)
+		  rarr[i] = rdata[i]-'0';
+	  outpt(rarr,rsz);
+	  delete[] rarr;
+	  rarr = 0;
+  }
   delete[] narr;
   narr = 0;
   delete[] arr;
