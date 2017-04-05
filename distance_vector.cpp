@@ -10,8 +10,9 @@ void output(int **a,int m)
   cout<<endl;
 }
 }
+
 int main(){
-int n;
+int n, src;
 cout<<"Enter the number of nodes"<<endl;
 cin>>n;
 int** cmat = new int*[n];
@@ -26,7 +27,11 @@ for(int i =0; i<n; i++){
       cin>>cmat[i][j];
   }
 }
+cout<<"Enter source vertex"<<endl;
+cin>>src;
+
 output(cmat,n);
+cout<<"The source vertex is "<<src<<endl;
 for(int i = 0; i < n; ++i) {
     delete [] cmat[i];
 }
