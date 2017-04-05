@@ -57,6 +57,9 @@ for(int u = 0; u < n; u++){
 			cout<<"Error graph contains negative weight cycle"<<endl;
 	}
 }
+cout<<"The distance from source vertex is"<<endl;
+for(int i = 0; i < n; i++)
+	cout<<d[i]<<"\tsrc = "<<src<<" and dest = "<<i<<endl;
 
 delete [] d;
 for(int i = 0; i < n; ++i) {
