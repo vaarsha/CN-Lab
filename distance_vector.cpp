@@ -41,6 +41,16 @@ for(int i = 0; i < n; i++) {
 	d[i] = 999;
 }
 
+for(int u = 0; u < n; u++){
+	for(int v = 0; v < n ; v++){
+		if(u != v) {
+			int w = cmat[u][v];
+			if(d[u] != 999 && d[u]+w <= d[v])
+				d[v] = d[u] + w;
+		}
+	}
+}
+
 delete [] d;
 for(int i = 0; i < n; ++i) {
     delete [] cmat[i];
