@@ -50,6 +50,13 @@ for(int u = 0; u < n; u++){
 		}
 	}
 }
+//Check for negative weight cycles.
+for(int u = 0; u < n; u++){
+	for(int v = 0; v < n; v++){
+		if(d[u] != 999 && d[u] + cmat[u][v] < d[v])
+			cout<<"Error graph contains negative weight cycle"<<endl;
+	}
+}
 
 delete [] d;
 for(int i = 0; i < n; ++i) {
