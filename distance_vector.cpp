@@ -18,7 +18,7 @@ cin>>n;
 int** cmat = new int*[n];
 for(int i = 0; i < n; ++i)
     cmat[i] = new int[n];
-cout<<"Enter values into cost matrix"<<endl;
+cout<<"Enter values into cost matrix, 999 for infinity"<<endl;
 for(int i =0; i<n; i++){
   for(int j =0; j<n; j++){
     if(i ==j)
@@ -32,6 +32,16 @@ cin>>src;
 
 output(cmat,n);
 cout<<"The source vertex is "<<src<<endl;
+
+//Bellman-Ford algorithm.
+int *d = new int[n];
+for(int i = 0; i < n; i++) {
+	if(i == src)
+		d[i] = 0;
+	d[i] = 999;
+}
+
+delete [] d;
 for(int i = 0; i < n; ++i) {
     delete [] cmat[i];
 }
