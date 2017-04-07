@@ -34,13 +34,13 @@ output(cmat,n);
 cout<<"The source vertex is "<<src<<endl;
 
 //Bellman-Ford algorithm.
+//Initialise distance array.
 int *d = new int[n];
-for(int i = 0; i < n; i++){
+for(int i = 0; i < n; i++)
 	d[i] = 999;
-	if(i == src)
-		d[i] = 0;
-}
+d[src] = 0;
 
+// Find minimum cost.
 for(int u = 0; u < n; u++){
 	for(int v = 0; v < n ; v++){
 		if(u != v) {
