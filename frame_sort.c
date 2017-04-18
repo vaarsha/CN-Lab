@@ -6,6 +6,7 @@
 int main()
 {
 	int fsz,i,j,k=0,z=0,p,q,tmp,ln,h,cm;
+	char tmp_st[20];
 	struct frame {
 		int id;
 		char st[20];
@@ -55,6 +56,9 @@ int main()
 			tmp = fr[p].id;
 			fr[p].id = fr[q].id;
 			fr[q].id = tmp;
+			strcpy(tmp_st, fr[p].st);
+			strcpy(fr[p].st, fr[q].st);
+			strcpy(fr[q].st, tmp_st);
 		}
 		for(i=0; i<ln; i++)
 			printf("%d \t %s\n",fr[i].id,fr[i].st);
@@ -65,6 +69,9 @@ int main()
 					tmp = fr[j].id;
 					fr[j].id = fr[j+1].id;
 					fr[j+1].id = tmp;
+					strcpy(tmp_st, fr[j].st);
+					strcpy(fr[j].st, fr[j+1].st);
+					strcpy(fr[j+1].st, tmp_st);
 				}
 			}
 		}
