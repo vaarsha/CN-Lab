@@ -6,7 +6,7 @@
 int main()
 {
 	int fsz,i,j,k=0,z=0,p,q,tmp,ln,h,cm;
-	char tmp_st[20];
+	char tmp_st[21];
 	struct frame {
 		int id;
 		char st[20];
@@ -23,8 +23,8 @@ int main()
 	printf("Enter frame size:");
 	scanf("%d",&fsz);
 	cm = strlen(s)-1;
-	ln = (cm)/fsz;
-	h = (cm)%fsz;
+	ln = cm / fsz;
+	h = cm % fsz;
 	//printf("String length is = %d and h value is %d= ",strlen(s)-1,h);
 	if(h!=0)
 		ln +=1;
@@ -44,9 +44,10 @@ int main()
 			fr[j].id = j;
 			//printf("here %d\n",fr[j].id);
 			k += fsz;
-			for(i=0; i<fsz &&s[z]!='\n'&& z<k;i++, z++){
+			for(i=0; i<fsz && s[z]!='\n'&& z<k; i++, z++){
 				fr[j].st[i] = s[z];
 			}
+			fr[j].st[i]='\0';
 			printf("%d\t\t%s\n",fr[j].id,fr[j].st);
 		}
 		printf("After shuffling\n");
