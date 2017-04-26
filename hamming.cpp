@@ -83,7 +83,7 @@ int main()
   for(int i = 0;i<n;i++){
       if(narr[i]==7){
 	     // cout<<"The sending i value is "<<i<<endl;
-	      narr[i]= (fndp(narr,n,i+1))%2;
+	      narr[i]= fndp(narr,n,i+1)%2;
 	     // cout<<"The new value of narr is "<<narr[i]<<endl;
       }
    }
@@ -103,7 +103,7 @@ int main()
 	  j = 0, res=0, e=0;
 	  while(j<r){
 		  pw=power(j);
-		  err[j] = (fndp(rarr,rsz,pw))%2;
+		  err[j] = fndp(rarr,rsz,pw)%2;
 		  if(err[j] == 1){
 			  res += pw;
 			  e = 1;
